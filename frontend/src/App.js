@@ -69,6 +69,9 @@ function App() {
             <Link className="brand" to="/">
               amazona
             </Link>
+            <a className="testPage" href="/hrefPage.html" >
+              test-page
+            </a>
           </div>
           <div>
             <SearchBox />
