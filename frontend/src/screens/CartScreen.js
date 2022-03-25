@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
-import { addToCart, removeFromCart } from '../actions/cartActions';
-import MessageBox from '../components/MessageBox';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
+import { addToCart, removeFromCart } from "../actions/cartActions";
+import MessageBox from "../components/MessageBox";
 
 export default function CartScreen(props) {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ export default function CartScreen(props) {
   const { id: productId } = params;
 
   const { search } = useLocation();
-  const qtyInUrl = new URLSearchParams(search).get('qty');
+  const qtyInUrl = new URLSearchParams(search).get("qty");
   const qty = qtyInUrl ? Number(qtyInUrl) : 1;
 
   const cart = useSelector((state) => state.cart);
@@ -24,12 +24,27 @@ export default function CartScreen(props) {
 
   const removeFromCartHandler = (id) => {
     // delete action
+    let data = cartItems.find((item) => item.product === id);
+    let removeCartDispatch;
+    if (data) {
+      removeCartDispatch = {
+        brand: data.seller.seller.name,
+        category: data.category,
+        description: data.description,
+        price: data.price,
+        name: data.name,
+      };
+    }
+    if (removeCartDispatch) {
+      window.smartech("dispatch", "remove from cart", removeCartDispatch);
+      console.log(removeCartDispatch, "dispatched");
+    }
     dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
-    window.smartech('dispatch', 'checkout', {})
-    navigate('/signin?redirect=/shipping');
+    window.smartech("dispatch", "checkout", {});
+    navigate("/signin?redirect=/shipping");
   };
   return (
     <div className="row top">
