@@ -28,6 +28,7 @@ export default function CartScreen(props) {
   };
 
   const checkoutHandler = () => {
+    window.smartech('dispatch', 'checkout', {})
     navigate('/signin?redirect=/shipping');
   };
   return (
