@@ -6,4 +6,4 @@ var config = {
   user_key: "ADGMOT35CHFLVDHBJNIG50K96BCUNNT01CHH00USCID0MIUCC5RG",
   siteid: "c6874bf2e38e64dcf89732290fb2b734",
 };
-importScripts("//cdnt.netcoresmartech.com/swv4-dev0.js");
+importScripts("//cdnt.netcoresmartech.com/sw-dev0.js");
